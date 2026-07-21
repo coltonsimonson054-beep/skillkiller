@@ -1,0 +1,78 @@
+# ============================
+#   SkillKiller configuration
+# ============================
+
+# How a level is chosen when a player kills another player.
+# true  = ONE random skill is picked; killer +1 and victim -1 in THAT skill.
+# false = killer and victim each roll their own independent random skill.
+same-skill-for-both: true
+
+# Skill levels never drop below this floor.
+min-level: 0
+
+# ---- Messaging ----
+notify-players: true
+killer-message: "&a+1 &b{skill} &7(now level {level})"
+victim-message: "&c-1 &b{skill} &7(now level {level})"
+
+broadcast-on-transfer: true
+broadcast-format: "&e{killer} &7defeated &e{victim} &7and stole a level of &b{skill}&7!"
+
+# Worlds where kills never transfer skill levels (e.g. a minigame/creative world).
+disabled-worlds: []
+
+# ---- Reliability ----
+# Potion-based skills (mining, speed, regeneration, luck) are re-applied on
+# a timer as a safety net in case something else strips them. Set to 0 to
+# disable. Milk buckets are handled instantly and separately below.
+reapply-interval-seconds: 60
+
+# Vanilla milk buckets clear ALL potion effects, including skill effects.
+# When true, SkillKiller instantly restores its potion-based skills after
+# a player drinks milk.
+protect-from-milk: true
+
+# How often (in minutes) player data is force-saved to disk, in addition to
+# being saved on every level change and on server shutdown. 0 disables the timer.
+autosave-interval-minutes: 5
+
+# ---- Skills ----
+# type is fixed per skill (see the README) - only the values below are tunable.
+skills:
+  mining:
+    enabled: true
+    display-name: "Mining"
+    max-level: 10
+    # Applies Haste; level 1 = Haste I, level 2 = Haste II, etc.
+
+  speed:
+    enabled: true
+    display-name: "Speed"
+    max-level: 10
+    # Applies Speed; level 1 = Speed I, level 2 = Speed II, etc.
+
+  health:
+    enabled: true
+    display-name: "Health"
+    max-level: 20
+    # Extra max health points per level. 2.0 = 1 full heart per level.
+    amount-per-level: 1.0
+
+  strength:
+    enabled: true
+    display-name: "Strength"
+    max-level: 20
+    # Extra flat melee attack damage per level.
+    amount-per-level: 0.5
+
+  regeneration:
+    enabled: true
+    display-name: "Regeneration"
+    max-level: 5
+    # Applies Regeneration; level 1 = Regen I, level 2 = Regen II, etc.
+
+  luck:
+    enabled: true
+    display-name: "Luck"
+    max-level: 10
+    # Applies Luck (loot table / fishing luck); level 1 = Luck I, etc.
